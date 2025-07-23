@@ -1,0 +1,232 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learning Journey Timeline</title>
+    <link rel="StyleSheet" href="style.css">
+    <link rel="StyleSheet" href="c.css">
+    <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+
+    /* Full-screen video */
+    #backgroundVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    /* Content that appears above video */
+    .content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .content h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+  </style>
+</head>
+<body>
+    <!-- Replace the src URL below with your own video file path or link -->
+    <video autoplay muted loop id="backgroundVideo">
+        <source src="space.mp4" type="video/webm">
+    </video>
+
+          <!-- Header -->
+    <header class="header">
+        <h1>Learning Journey Timeline</h1>
+        <img id="menuIcon" src="https://img.icons8.com/ios-filled/50/ffffff/menu--v1.png" alt="Open navigation">
+    </header>
+    
+        <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <ul>
+            <li><a href="#" onclick="loadPage('About')">About</a></li>
+            <li><a href="#" onclick="loadPage('Skills')">Skills</a></li>
+            <li><a href="#" onclick="loadPage('Acheveiments')">Acheveiments</a></li>
+           
+        </ul>
+    </nav>
+
+        <!-- Screen‑dim overlay -->
+    <div class="overlay" id="overlay"></div>
+
+        <!-- Main Content -->
+    <main class="content">
+        <div id="content">
+            <h1>Welcome 👋</h1>
+            <p>This is a minimal template that shows a fixed header and a slide‑in sidebar. Click the hamburger icon on smaller screens to toggle the menu.</p>
+
+        </div>
+    </main>
+
+   <script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  function loadPage(page) {
+    let content = '';
+    if (page === 'About') {
+      content = `
+        <div class="page-wrapper">
+          <section class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                    <h2 class="About-me">About me</h2>
+                    <h3>📜 Animated Timeline of My Learning Journey</h3>
+                    <p>An interactive scroll-based timeline showcasing my 
+                      growth as a developer — from learning core tech stacks 
+                      to building real-world projects. Each milestone is 
+                      fully animated, offering a visually engaging narrative 
+                      of my skills, achievements, and career path. Perfect for 
+                      impressing recruiters with a story, not just a list.</p>
+              </div>
+            </div>
+            
+          </section>
+        </div>
+      `;
+    } else if (page === 'Skills') {
+      content = `
+        <div class="page-wrapper">
+          <section class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                    <h2>2021</h2>
+                <h3>Started Web Development</h3>
+                <p>Learned HTML, CSS, and built my first landing page.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h2>2022</h2>
+                <h3>Explored JavaScript & React</h3>
+                <p>Built dynamic websites and small SPAs.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h2>2023</h2>
+                <h3>Advanced Projects</h3>
+                <p>Worked on real-world applications and improved skills.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+    } else if (page === 'Acheveiments') {
+      content = `
+        <div class="page-wrapper">
+          <section class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-content">
+                    <h2>2021</h2>
+                <h3>Started Web Development</h3>
+                <p>Learned HTML, CSS, and built my first landing page.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h2>2022</h2>
+                <h3>Explored JavaScript & React</h3>
+                <p>Built dynamic websites and small SPAs.</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-content">
+                <h2>2023</h2>
+                <h3>Advanced Projects</h3>
+                <p>Worked on real-world applications and improved skills.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+    }
+
+    // Inject the content into the page
+    document.getElementById('content').innerHTML = content;
+
+    // Re-initialize GSAP scroll animations ONLY IF abc section is loaded
+    if (page === 'About') {
+      gsap.utils.toArray(".timeline-item").forEach((item) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }
+
+    if (page === 'Skills') {
+      gsap.utils.toArray(".timeline-item").forEach((item) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }
+
+    if (page === 'Acheveiments') {
+      gsap.utils.toArray(".timeline-item").forEach((item) => {
+        gsap.fromTo(
+          item,
+          { opacity: 0, y: 50 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 1.5,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+    }
+  }
+</script>
+
+
+    
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script src="scripit.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+
+.timeline {
+  width: 80%;
+  margin: 100px auto;
+  position: relative;
+}
+
+.timeline-item {
+  margin: 50px 0;
+  opacity: 0;
+  transform: translateY(50px);
+}
+
+.timeline-content {
+  background: #023D54;
+  padding: 20px 30px;
+  border-left: 4px solid white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: justify;
+}
+
+.timeline-content h2 {
+  color: white;
+  margin: 0;
+}
+
+.About-me{
+  margin: 0;
+  text-align: center;
+}
+
+.timeline-content h3 {
+  margin: 10px 0;
+  color: white;
+}
+
+.timeline-content p {
+  margin: 0;
+  color: white;
+}
+
+@media screen and (max-width: 600px) {
+  .timeline {
+    width: 95%;
+  }
+
+  .timeline-content {
+    padding: 15px;
+  }
+}
+
+.page-wrapper {
+  width: 90%;
+  max-width: 900px;
+  margin: 100px auto;
+  height: auto;
+  
+}
+
+@media screen and (max-width: 600px) {
+  .page-wrapper {
+    width: 95%;
+    margin: 60px auto;
+  }
+}
